@@ -29,7 +29,7 @@ def process_data():
     was_alone = input_data['was_alone']
 
 # Load Model
-    model = joblib.load('.models/titanic_grad_boost.joblib')
+    model = joblib.load('./models/titanic_grad_boost.joblib')
 
 # process data as model input
     input_data = [age, was_alone, gender]
