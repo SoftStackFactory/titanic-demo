@@ -18,7 +18,6 @@ def hello_world():
 # Prediction Route
 
 @app.route('/predict', methods = ['GET', 'POST'])
-@cross_origin()
 def process_data():
 
 # Grab JSON input
