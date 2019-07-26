@@ -12,27 +12,36 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello World...'
 
-@app.route('/predict')
+
+
+@app.route('/predict', methods = ['POST'])
 def process_data():
     
+    input_data = request.get_json()
+    print(input_data)
+    age = input_data['age']
+    gender = input_data['gender']
+    is_alone = input_data['is_alone']
+
     model = joblib.load('/titanic_grad_boost.joblib')
 
 
 # mock data
-    input_data = {
+    mock_data = {
         'age': 14,
         'was_alone': 0,
         'gender': 1
     }
 
 # process
-    input_data = [input_data['age'], input_data['was_alone'], input_data['gender']]
-    input_data = np.array(input_data).reshape(1, -1)
-    print(input_data)
+    mock_input = [mock_data['age'], mock_data['was_alone'], mock_data['gender']]
+    # input_data = [input_data['age'], input_data['was_alone'], input_data['gender']]
+    mock_input = np.array(input_data).reshape(1, -1)
+    # print(input_data)
 
 # predict
-    pred = model.predict(input_data)[0]
-    prob_of_survival = model.predict_proba(input_data)[0][1]
+    pred = model.predict(mock_input)[0]
+    prob_of_survival = model.predict_proba(mock_input)[0][1]
 
 # result
     if pred == 1:
