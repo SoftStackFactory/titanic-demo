@@ -221,7 +221,7 @@ plt.show()
 ```
 
 
-![png](output_21_0.png)
+![png](./assets/output_21_0.png)
 
 
 ### `Age` and `Gender` VS. `Survived`
@@ -236,7 +236,7 @@ plt.show()
 ```
 
 
-![png](output_23_0.png)
+![png](assets/output_23_0.png)
 
 
 <br>
@@ -580,7 +580,7 @@ _ = print_confusion_matrix(confusion_matrix = cm, class_names=labels)
 ```
 
 
-![png](output_63_0.png)
+![png](assets/output_63_0.png)
 
 
 <br>
