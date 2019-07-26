@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from sklearn.externals import joblib
 import pickle
 import numpy as np
 
 # Create Flask App
 app = Flask(__name__)
+CORS(app)
 
 
 # Home Route
@@ -14,7 +16,9 @@ def hello_world():
 
 
 # Prediction Route
+
 @app.route('/predict', methods = ['GET', 'POST'])
+@cross_origin()
 def process_data():
 
 # Grab JSON input
