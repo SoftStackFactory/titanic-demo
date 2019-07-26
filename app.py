@@ -12,37 +12,37 @@ def hello_world():
 
 
 
-@app.route('/predict', methods = ['POST'])
+@app.route('/predict', methods = ['GET', 'POST'])
 def process_data():
-    
+
 # Grab JSON input
     input_data = request.get_json()
-    print(input_data)
+    
 
 # Initiate Variables
     age = input_data['age']
     gender = input_data['gender']
-    is_alone = input_data['is_alone']
+    was_alone = input_data['was_alone']
 
-    model = joblib.load('/titanic_grad_boost.joblib')
+    model = joblib.load('./titanic_grad_boost.joblib')
 
 
 # mock data
     mock_data = {
-        'age': 14,
-        'was_alone': 0,
+        'age': 38,
+        'was_alone': 1,
         'gender': 1
     }
 
 # process
     mock_input = [mock_data['age'], mock_data['was_alone'], mock_data['gender']]
-    # input_data = [age, is_alone, gender]
-    mock_input = np.array(input_data).reshape(1, -1)
+    input_data = [age, was_alone, gender]
+    input_data = np.array(input_data).reshape(1, -1)
     # print(input_data)
 
 # predict
-    pred = model.predict(mock_input)[0]
-    prob_of_survival = model.predict_proba(mock_input)[0][1]
+    pred = model.predict(input_data)[0]
+    prob_of_survival = model.predict_proba(input_data)[0][1]
 
 # result
     if pred == 1:
@@ -50,8 +50,11 @@ def process_data():
     else:
         result = 'perished'
 
+<<<<<<< HEAD
     # result = 'survived' if pred == 1 else 'perished'
 
+=======
+>>>>>>> f7157b7abc1a83998ee3bdb1635c68414c50ac34
     chance_of_survival= round(prob_of_survival, 2)
 
 
@@ -59,4 +62,4 @@ def process_data():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000) #run app in debug mode on port 5000
+    app.run(host= '0.0.0.0', debug=True, port=5000) #run app in debug mode on port 5000
