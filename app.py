@@ -1,16 +1,14 @@
 from flask import Flask, request, jsonify
 from sklearn.externals import joblib
-import sys 
 import pickle
 import numpy as np
-print('hello world')
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_world():
-    return 'Hello World...'
+    return jsonify({"what":'Hello World...'})
 
 
 
@@ -51,7 +49,9 @@ def process_data():
         result = 'survived'
     else:
         result = 'perished'
-    
+
+    # result = 'survived' if pred == 1 else 'perished'
+
     chance_of_survival= round(prob_of_survival, 2)
 
 
