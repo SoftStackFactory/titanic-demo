@@ -7,7 +7,6 @@ would have survived the distaster.
 
 
 # Notebook
-<hr>
 
 ## Imports
 
