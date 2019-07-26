@@ -17,8 +17,11 @@ def hello_world():
 @app.route('/predict', methods = ['POST'])
 def process_data():
     
+# Grab JSON input
     input_data = request.get_json()
     print(input_data)
+
+# Initiate Variables
     age = input_data['age']
     gender = input_data['gender']
     is_alone = input_data['is_alone']
@@ -35,7 +38,7 @@ def process_data():
 
 # process
     mock_input = [mock_data['age'], mock_data['was_alone'], mock_data['gender']]
-    # input_data = [input_data['age'], input_data['was_alone'], input_data['gender']]
+    # input_data = [age, is_alone, gender]
     mock_input = np.array(input_data).reshape(1, -1)
     # print(input_data)
 
@@ -50,8 +53,6 @@ def process_data():
         result = 'perished'
     
     chance_of_survival= round(prob_of_survival, 2)
-
-
 
 
     return jsonify({"result":result, "chance":chance_of_survival})
