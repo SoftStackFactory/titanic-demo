@@ -50,11 +50,8 @@ def process_data():
     else:
         result = 'perished'
 
-<<<<<<< HEAD
     # result = 'survived' if pred == 1 else 'perished'
 
-=======
->>>>>>> f7157b7abc1a83998ee3bdb1635c68414c50ac34
     chance_of_survival= round(prob_of_survival, 2)
 
 
