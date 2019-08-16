@@ -31,7 +31,7 @@ def process_data():
 # Load Model
     model = joblib.load('./models/titanic_grad_boost.joblib')
 
-# process data as model input
+# convert data to model input
     input_data = [age, was_alone, gender]
     input_data = np.array(input_data).reshape(1, -1)
 
@@ -49,4 +49,4 @@ def process_data():
 
 # Run app 
 if __name__ == '__main__':
-    app.run(host= '0.0.0.0') #run app in debug mode on port 5000
+    app.run(host= '0.0.0.0') 
