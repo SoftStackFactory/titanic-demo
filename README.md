@@ -5,7 +5,6 @@ would have survived the distaster.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SoftStackFactory/titanic-demo/master)
 
-
 # Notebook
 
 ## Imports
