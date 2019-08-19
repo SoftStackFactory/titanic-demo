@@ -1,7 +1,6 @@
 # Titanic-Model Flask Demo
-Demo for a simple app to host a fitted model trained on a subset of the titanic disaster dataset, 
-which will predict if a person with a given Age, Gender, and wheter or not they travelled alone,
-would have survived the distaster.
+Demo for a simple app to host a fitted model, trained on a subset of the titanic disaster dataset.
+The model was fitted on three dimensions of data, therefore, if we can input these three dimensions: the person's Gender, their Age, and whether or not they travelled alone, the model should be able to return whether or not that person would have durvived the titanic as well as a (%) chance of survival.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SoftStackFactory/titanic-demo/master)
 
