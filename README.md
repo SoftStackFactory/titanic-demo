@@ -1,19 +1,156 @@
-# Titanic-Model Flask Demo
-Demo for a simple app to host a fitted model, trained on a subset of the titanic disaster dataset.
-The model was fitted on three dimensions of data, therefore, if we can input these three dimensions: the person's Gender, their Age, and whether or not they travelled alone, the model should be able to return whether or not that person would have durvived the titanic as well as a (%) chance of survival.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SoftStackFactory/titanic-demo/master)
+# Titanic Model
 
-# Notebook
 
-## Imports
+**Important Note:** To save your work and notes for later navigate to the `File` tab on the top of the noteboook and click `Download as Notebook (.ipynb)` 
 
-#### Import `pandas` and `numpy`  for Data Manipulation
+## Understanding How To Use A Jupyter Notebook
+
+### <span style="color:red"> ***Click Me*** </span>
+
+If you see this cell turn blue that means this cell is focused
+
+### <span style="color:red"> ***Double Click Me*** </span>
+
+If you see this cell turn green that means this cell is selected for edit.
+To get out of edit mode, click `shift` and `enter` at the same time.
+This will run the cell with the edits you made, if you made any at all and shift the focus to the cell below. 
+
+You can also press `ESC` or `Escape` to switch from edit mode to focus mode. **Note** that you need to run the cell for any markdown style to take effect, do this by clicking `shift` and `enter` at the same time.
+
+
+### <span style="color:red"> ***Click Me Again*** </span>
+
+If you see this cell turn blue that means this cell is focused. 
+
+**When the cell is focused you can press keys on the keyboard to help you navigate the notebook cells easier.**
+
+**Once A Cell Is Selected You Can Press The Following Keys For Their Respective Actions:**
+- `up arrow` - shift focus to cell above
+- `down arrow` - shift focus to cell below
+
+
+- `Enter` - edit cell after cell is selected
+- `Shift and Enter` runs the cell and then shifts focus to the cell below.
+
+
+- `a` - insert cell above the selected cell
+- `b` - insert cell below the selected cell
+
+
+- `m` - changes the cell type to a markdown cell, which allows you to write notes about code cells
+- `y` - changes the cell type to a code cell, which allows you to write and execute code.
+
+
+- `dd` - (double pressing `d`) will delete the selected cell. If you accidently delete a cell navigate to the *`Edit`* toolbar near the top of the screen and click `Undo Delete Cells`
+
+
+<hr>
+
+### This Is A ***`Markdown`*** Cell
+
+Use markdown cells to write notes about your code and experiments.
+
+Once focused click `Enter` to edit the markdown cell, once finished click `Shift` and `Enter` at the same time for the edits to take place.
+
+*Code cells look different than mark down cells.*
+
+<hr>
 
 
 ```python
-import pandas as pd
-import numpy as np
+# This is a code cell
+```
+
+
+```python
+# Once focused click `Enter` to edit the code cell
+
+print("Hello!") # Press shift and enter to run cell to see output
+```
+
+    Hello!
+
+
+<hr>
+
+## Python Fundamentals
+
+### *Declaring* Variables
+
+We can save some `value`, the result of a `calculation`, or even the output of a `function` to a `variable`. This is particularly important for making your code `concise`, `readable`, and `efficient`.
+
+**Try Running the code cell below pressing `shift` and `enter` at the same time after there is focus on the cell:**
+
+
+```python
+# Declare variables with specific values so that we can use them later in the notebook code cells
+a = 1
+b = 2
+
+print(a) # Print the value of `a` to the screen
+print(b) # Print the value of `b` to the screen
+```
+
+    1
+    2
+
+
+
+```python
+# Declare variables
+text_one = "Hello"
+text_two = "World!"
+
+print(text_one, text_two)
+```
+
+    Hello World!
+
+
+### Operations On Variables
+
+#### Addition **`+`**
+The `+` symbol is works differently depending on the data type of the value of the variable.
+
+Run the following code to notice the difference:
+
+
+```python
+print(a + b) # Output is a number data type
+
+print(text_one + text_two) # Output is a text data type; Note there are no spaces
+```
+
+    3
+    HelloWorld!
+
+
+<br>
+
+**Other operators:**
+
+- `-`: subtraction
+- `*`: multiplication
+- `//`: whole number division
+- `/`: floating point division
+
+Operator precedence in calculation: **PEMDAS**
+<img src="https://vignette.wikia.nocookie.net/math/images/c/c0/PEMDAS.png/revision/latest?cb=20120220215230&path-prefix=en"
+width= "350px;">
+<br>
+
+## Importing Necessary Libraries 
+Libraries are groupings of code written by other developers. We use libraries so that we do not need to reinvent the wheel to do common programming tasks. 
+
+#### Import `pandas` and `numpy`  for Data Manipulation
+
+The ***`as`*** keyword maps a library to a shorted expression that can be used in later code, this way if the library name is super long we don't have to type as many characters every time we want to use one of the libraries functions. 
+
+
+```python
+import pandas as pd # import pandas as an alias called `pd` 
+import numpy as np# import numpy as an alias called `np` 
 ```
 
 <br>
@@ -23,7 +160,7 @@ import numpy as np
 
 ```python
 import matplotlib.pyplot as plt
-import seaborn as sns; sns.set()
+import seaborn as sns
 plt.style.use('seaborn-muted')
 ```
 
@@ -48,11 +185,11 @@ from sklearn.metrics import accuracy_score
 
 <br>
 
-#### Import `pickle` to save finished model
+#### Import `joblib` to save finished model
 
 
 ```python
-import pickle
+import joblib
 ```
 
 <br>
@@ -65,12 +202,12 @@ import pickle
 
 
 ```python
-train = pd.read_csv('./data/titanic.csv')
+df = pd.read_csv('./data/titanic.csv')
 ```
 
 
 ```python
-train.head()
+df.head()
 ```
 
 
@@ -90,7 +227,6 @@ train.head()
         text-align: right;
     }
 </style>
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -197,6 +333,13 @@ train.head()
 
 
 
+**Remove the `#` symbol in the code cell below to temporarily remove the survived column from the data frame and print it to the screen**
+
+
+```python
+# df.iloc[:1].drop(['Survived'], axis=1)
+```
+
 <br>
 <br>
 <br>
@@ -205,21 +348,87 @@ train.head()
 # 1. Explatory Data Analysis
 <hr>
 
+### ASIDE: matplotlib.pyplot
+
+#### Built-in Docs: `?`
+
+**Remove the `#` symbol in the code cell below to look at the documentation for any library function you want to learn how to use**
+
+
+```python
+# np.random.randint?
+```
+
+#### Generating random data
+
+
+```python
+a = np.random.randint(low=0, high=10, size=10)
+print(a)
+```
+
+    [2 4 9 6 1 8 8 5 8 7]
+
+
+#### Generating structured data
+
+
+```python
+# Data
+x = np.arange(10)
+y = x**2
+
+# print(x)
+# print(y)
+```
+
+#### Generic plot
+
+
+```python
+# Figure
+fig = plt.figure()
+
+# Axis
+ax = fig.gca()
+
+# Plot
+ax.plot(x,y)
+
+# Show it on screen.
+plt.show()
+```
+
+
+![png](./assets/output_44_0.png)
+
+
+<br>
+
 ## Women and Children?
 
 ### `Gender` vs. `Survived`
 
 
 ```python
+# Place the table
 fig = plt.figure(figsize=(8,6))
+
+# Put sheet on table
 ax = fig.gca()
-sns.countplot(train['Gender'], hue=train['Survived'], ax=ax)
+
+# Draw plot on sheet
+sns.countplot(df['Gender'], hue=df['Survived'], ax=ax)
+
+# Output the plot to the screen
 plt.show()
 ```
 
 
-![png](./assets/output_21_0.png)
+![png](./assets/output_48_0.png)
 
+
+<br>
 
 ### `Age` and `Gender` VS. `Survived`
 
@@ -227,13 +436,13 @@ plt.show()
 ```python
 fig = plt.figure(figsize=(8,6))
 ax = fig.gca()
-sns.violinplot("Gender", "Age", hue = "Survived", data = train, split = True)
+sns.violinplot("Gender", "Age", hue = "Survived", data = df, split = True)
 
 plt.show()
 ```
 
 
-![png](assets/output_23_0.png)
+![png](./assets/output_51_0.png)
 
 
 <br>
@@ -246,93 +455,73 @@ plt.show()
 
 ## Where You travelling Alone ?
 
-
-```python
-train['FamilySize'] = train['SibSp'] + train['ParCh'] + 1
-```
+#### `FamilySize`
 
 
 ```python
-train['IsAlone'] = 0
-train.loc[train['FamilySize'] == 1, "IsAlone"] = 1
+df['FamilySize'] = df['SibSp'] + df['ParCh'] + 1
 ```
+
+#### How does `FamilySize` impact `Survived`
+
+
+```python
+# Place the table
+fig = plt.figure(figsize=(8,6))
+
+# Put sheet on table
+ax = fig.gca()
+
+# Draw plot on sheet
+sns.catplot(x='FamilySize', y='Survived', data=df, kind="point", ci=None, ax=ax)
+
+# Output the plot to the screen
+plt.close(2)
+plt.show()
+```
+
+
+![png](./assets/output_58_0.png)
+
 
 <br>
 
-### `IsAlone` column is appended to the end of the dataframe
+#### `IsAlone`
 
 
 ```python
-train.head()
+df['IsAlone'] = 0
 ```
 
 
+```python
+# df.head()
+```
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+```python
+df.loc[df['FamilySize'] == 1, "IsAlone"] = 1
+```
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+#### How does `IsAlone` impact `Survived`
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Survived</th>
-      <th>Age</th>
-      <th>IsAlone</th>
-      <th>IsFemale</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>22.0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>38.0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>26.0</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>35.0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>35.0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
+```python
+# Place the table
+fig = plt.figure(figsize=(8,6))
+
+# Put sheet on table
+ax = fig.gca()
+
+# Draw plot on sheet
+sns.countplot(df['IsAlone'], hue=df['Survived'], ax=ax)
+
+# Output the plot to the screen
+plt.show()
+```
+
+
+![png](./assets/output_65_0.png)
 
 
 <br>
@@ -341,7 +530,7 @@ train.head()
 
 
 ```python
-train = train.drop(['PassengerId', 'Pclass', 'Name', 'SibSp',
+df = df.drop(['PassengerId', 'Pclass', 'Name', 'SibSp',
        'ParCh', 'Ticket', 'Fare', 'Cabin', 'Title','FamilySize', 'Embarked'], axis=1)
 ```
 
@@ -354,17 +543,17 @@ Most machine learning models cannot interpret string values directly, we must en
 
 
 ```python
-train['IsFemale'] = train['Gender'].replace(['male','female'],[0,1])
+df['IsFemale'] = df['Gender'].replace(['male','female'],[0,1])
 ```
 
 
 ```python
-train = train.drop(['Gender'],axis=1)
+df = df.drop(['Gender'],axis=1)
 ```
 
 
 ```python
-train.head()
+df.head()
 ```
 
 
@@ -449,20 +638,22 @@ train.head()
 * `X_train` and `y_train`: Will be passed into the model to learn the patterns in the data
 * `X_test` and `y_test`: Will be used to test the validity of the model's predictions.
 
+<img src='./assets/train_test_split.webp' style="width:100px,height:100px">
+
 
 ```python
-features = train.drop(['Survived'], axis=1)
-target = train['Survived']
+features = df.drop(['Survived'], axis=1)
+labels = df['Survived']
 ```
 
 
 ```python
-X_train, X_test, y_train, y_test = train_test_split(features, target, train_size=0.90, random_state=100)
+X_train, X_test, y_train, y_test = train_test_split(features, labels, train_size=0.90, random_state=100)
 ```
 
-    C:\Users\David\Anaconda3\lib\site-packages\sklearn\model_selection\_split.py:2179: FutureWarning: From version 0.21, test_size will always complement train_size unless both are specified.
+    /srv/conda/envs/notebook/lib/python3.7/site-packages/sklearn/model_selection/_split.py:2179: FutureWarning: From version 0.21, test_size will always complement train_size unless both are specified.
       FutureWarning)
-    
+
 
 ### Check Dimensions
 
@@ -472,7 +663,7 @@ print("X_train:", X_train.shape, "y_train:", y_train.shape)
 ```
 
     X_train: (801, 3) y_train: (801,)
-    
+
 
 
 ```python
@@ -480,7 +671,7 @@ print("X_test:", X_test.shape, "y_test:", y_test.shape)
 ```
 
     X_test: (90, 3) y_test: (90,)
-    
+
 
 <br>
 
@@ -577,7 +768,7 @@ _ = print_confusion_matrix(confusion_matrix = cm, class_names=labels)
 ```
 
 
-![png](assets/output_63_0.png)
+![png](./assets/output_98_0.png)
 
 
 <br>
@@ -590,11 +781,12 @@ _ = print_confusion_matrix(confusion_matrix = cm, class_names=labels)
 
 
 ```python
-from sklearn.externals import joblib
-joblib.dump(model, './titanic_grad_boost.joblib') 
+joblib.dump(model, './models/titanic_grad_boost.joblib') 
 ```
 
 
 
 
-    ['./titanic_grad_boost.joblib']
+    ['./models/titanic_grad_boost.joblib']
+
+
