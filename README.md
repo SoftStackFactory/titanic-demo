@@ -1,6 +1,11 @@
 
 # Titanic Model
 
+Demo for a simple app to host a fitted model, trained on a subset of the titanic disaster dataset.
+The model was fitted on three dimensions of data, therefore, if we can input these three dimensions: the person's Gender, their Age, and whether or not they travelled alone, the model should be able to return whether or not that person would have durvived the titanic as well as a (%) chance of survival.
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SoftStackFactory/titanic-demo/master)
+<hr>
 
 **Important Note:** To save your work and notes for later navigate to the `File` tab on the top of the noteboook and click `Download as Notebook (.ipynb)` 
 
