@@ -141,7 +141,7 @@ Operator precedence in calculation: **PEMDAS**
 <img alt="image showing opertors order using pemdas" src="https://vignette.wikia.nocookie.net/math/images/c/c0/PEMDAS.png/revision/latest?cb=20120220215230&path-prefix=en"
 width= "350px;">
 
-<img  height="400" width="400" alt="image of different programming operators" src="./assets/operators-daydream.jpg">
+<img  height="800" width="500" alt="image of different programming operators" src="./assets/operators-daydream.jpg">
 
 <br>
 
