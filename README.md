@@ -135,9 +135,19 @@ print(text_one + text_two) # Output is a text data type; Note there are no space
 - `//`: whole number division
 - `/`: floating point division
 
+
+
 Operator precedence in calculation: **PEMDAS**
-<img src="https://vignette.wikia.nocookie.net/math/images/c/c0/PEMDAS.png/revision/latest?cb=20120220215230&path-prefix=en"
+<img alt="image showing opertors order using pemdas" src="https://vignette.wikia.nocookie.net/math/images/c/c0/PEMDAS.png/revision/latest?cb=20120220215230&path-prefix=en"
 width= "350px;">
+
+<img  height="400" width="400" alt="image of different programming operators" src="./assets/operators-daydream.jpg">
+
+<br>
+
+### Learn more:
+<a href="https://github.com/SoftStackFactory/titanic-demo/blob/master/assets/beginners-python-cheat-sheets.pdf"> Other Python programming cheat sheets<a>
+
 <br>
 
 ## Importing Necessary Libraries 
